@@ -1,7 +1,5 @@
 services:
   web:
-    container_name: "blog-web"
-    image: "blog-web-image"
     build: 
       context: .
     ports:
