@@ -44,7 +44,7 @@ export default function PostPage({ title, description, content }: BlogPost) {
                 <div className="text-xl font-medium italic text-gray-500">{ description }</div>
                 <div 
                     className="mt-4 prose lg:prose-xl" 
-                    dangerouslySetInnerHTML={{__html: marked.parse(content)}}
+                    dangerouslySetInnerHTML={{__html: marked.parse(content ?? "")}}
                 >
 
                 </div>
