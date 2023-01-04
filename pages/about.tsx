@@ -1,7 +1,7 @@
 import Navbar from "../components/navbar";
 import picture from "../public/picture.png";
 import Image from "next/image";
-import { FaDiscord, FaGithub } from "react-icons/fa";
+import { FaDiscord, FaEnvelope, FaGithub } from "react-icons/fa";
 
 export default function About() {
   return (
@@ -51,7 +51,13 @@ export default function About() {
                 Robin5605
               </a>
             </div>
-            
+
+            <div className="flex items-center space-x-2 font-mono">
+              <FaEnvelope />
+              <a href={"mailto:robin@robinj.xyz"}>
+                robin@robinj.xyz
+              </a>
+            </div>
           </div>
         </div>
     </div>
