@@ -20,5 +20,5 @@
           }
       ]
   },
-  "ignorePatterns": []
+  "ignorePatterns": ["pages/_document.js"]
 }
