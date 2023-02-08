@@ -39,7 +39,7 @@ export default function About() {
             </p>
           </div>
         
-          <div className="flex justify-center items-center space-x-4 p-4">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 p-4">
             <div className="flex items-center space-x-2 font-mono">
               <FaDiscord /> 
               <p>Robin J#1984</p>
