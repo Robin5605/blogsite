@@ -3,6 +3,7 @@ import { GetStaticPropsContext } from "next";
 import Navbar from "../components/navbar";
 import { BlogPost } from "../models/blog";
 import { getAllPosts, getPost } from "../s3";
+import Head from "next/head";
 
 export const getStaticPaths = async () => {
 
@@ -38,6 +39,9 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 export default function PostPage({ title, description, content }: BlogPost) {
     return (
         <div className="w-screen min-h-screen bg-nord-500 dark:bg-nord-200">
+            <Head>
+                <title>{ title }</title>
+            </Head>
             <Navbar selected={null} />
             <div className="mx-auto py-16 px-8 w-fit">
                 <div className="text-4xl font-bold dark:text-nord-700">{ title }</div>

@@ -6,6 +6,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFilter } from "react-icons/bs";
 import { getAllPosts } from "../s3";
+import Head from "next/head";
 
 export async function getStaticProps() {
   const posts = await getAllPosts();
@@ -83,6 +84,9 @@ export default function Home({ posts, tags }: HomePageProps) {
 
   return (
     <div className="flex flex-col min-h-screen w-screen bg-nord-500 dark:bg-nord-200">
+        <Head>
+          <title>Home</title>
+        </Head>
         <Navbar selected="home"/>
         <div className="container mx-auto my-16 text-black dark:text-white ">
           <div className="w-full md:w-1/2 mx-auto space-y-2 p-6">

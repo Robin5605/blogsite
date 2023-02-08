@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Navbar from "../components/navbar";
 import picture from "../public/picture.png";
 import Image from "next/image";
@@ -6,6 +7,9 @@ import { FaDiscord, FaEnvelope, FaGithub } from "react-icons/fa";
 export default function About() {
   return (
     <div className="flex flex-col min-h-screen w-screen bg-nord-500 dark:bg-nord-200 dark:text-white">
+        <Head>
+          <title>About</title>
+        </Head>
         <Navbar selected="about"/>
         <div className="flex flex-col mx-auto my-16">
           <div className="rounded-full overflow-hidden mx-auto w-fit shadow-md">
