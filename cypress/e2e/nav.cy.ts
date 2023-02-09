@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 describe('Navigation', () => {
     it("Loads home page successfully", () => {
         cy.visit("/");
