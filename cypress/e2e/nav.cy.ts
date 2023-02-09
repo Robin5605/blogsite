@@ -28,3 +28,5 @@ describe('Navigation', () => {
         cy.url().should('eq', Cypress.config().baseUrl);
     });
 });
+
+export {};
