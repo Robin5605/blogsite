@@ -1,8 +1,10 @@
 name: "Docker Build and Push"
 
 on:
-  workflow_call:
   workflow_dispatch:
+  push:
+    branches:
+      - master
 
 env:
   AWS_REGION: "us-east-1"
@@ -46,7 +48,7 @@ jobs:
       - name: "Log into registry ${{ env.REGISTRY }}"
         uses: docker/login-action@ec9cdf07d570632daeb912f5b2099cb9ec1d01e6
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ${{ env.GHCR_REGISTRY }}
           username: robin5605
           password: ${{ secrets.GITHUB_TOKEN }}
 
