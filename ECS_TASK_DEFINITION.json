@@ -7,11 +7,9 @@
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "blog-3000-tcp",
                     "containerPort": 3000,
                     "hostPort": 3000,
                     "protocol": "tcp",
-                    "appProtocol": "http"
                 }
             ],
             "essential": true,
@@ -51,10 +49,6 @@
     ],
     "cpu": "1024",
     "memory": "2048",
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
-    },
     "registeredAt": "2023-03-10T19:42:09.279Z",
     "registeredBy": "arn:aws:iam::270665662100:root",
     "tags": []
