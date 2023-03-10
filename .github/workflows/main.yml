@@ -5,12 +5,10 @@ on:
   workflow_dispatch:
 
 env:
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: robin5605/blogsite
-  # AWS Region
-  AWS_REGION: us-east-1
+  AWS_REGION: "us-east-1"
+  ECR_REPOSITORY: "blog"
+  GHCR_REGISTRY: ghcr.io
+  GHCR_IMAGE_NAME: robin5605/blogsite
 
 jobs:
   build-push:
@@ -57,8 +55,10 @@ jobs:
         uses: docker/metadata-action@3343011071fa59c64a174cc6aa415dc13b31b7b2
         with:
           images: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.IMAGE_NAME }}
+            ${{ env.GHCR_REGISTRY }}/${{ env.GHCR_IMAGE_NAME }}
+            ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
       - name: "Build and push Docker image"
         id: build-and-push
