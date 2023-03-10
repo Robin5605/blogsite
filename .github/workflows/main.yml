@@ -9,6 +9,8 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: robin5605/blogsite
+  # AWS Region
+  AWS_REGION: us-east-1
 
 jobs:
   build-push:
