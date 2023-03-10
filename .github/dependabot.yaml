@@ -17,3 +17,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    assignees:
+      - "Robin5605"
+    
