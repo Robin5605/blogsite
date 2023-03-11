@@ -38,7 +38,7 @@ function Navbar({ selected }: NavbarProps) {
     const checked = theme === "LIGHT";
     return (
         <div className="flex justify-between items-center bg-nord-100 dark:bg-neutral-900 text-white p-4">
-            <p className="font-bold text-2xl">
+            <p className="font-bold text-2xl text-red-500">
                 Blog
             </p>
 
