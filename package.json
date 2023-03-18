@@ -20,7 +20,7 @@
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "cypress": "^12.5.1",
     "eslint": "8.27.0",
-    "eslint-config-next": "13.0.3",
+    "eslint-config-next": "13.2.4",
     "gray-matter": "^4.0.3",
     "marked": "^4.2.2",
     "next": "13.2.4",
