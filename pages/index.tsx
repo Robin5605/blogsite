@@ -105,10 +105,10 @@ export default function Home({ posts, tags }: HomePageProps) {
               { posts.length == 0
                 ? <p className="mx-auto text-center">No posts yet. Stay tuned!</p>
                 : selectedTags.length === 0
-                  ? posts.map(post => <BlogPreview post={post} key={post.link}/>)
+                  ? posts.map(post => <BlogPreview post={post} key={post.filename}/>)
                   : posts
                     .filter(post => post.tags.some(tag => selectedTags.includes(tag)))
-                    .map(post => <BlogPreview post={post} key={post.link}/>) }
+                    .map(post => <BlogPreview post={post} key={post.filename}/>) }
             </div>
           </div>
         </div>
