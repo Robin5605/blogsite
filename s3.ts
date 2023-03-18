@@ -2,10 +2,22 @@ import { GetObjectCommand, ListObjectsCommand, S3Client } from "@aws-sdk/client-
 import matter from "gray-matter";
 import { BlogPost } from "./models/blog";
 
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 const REGION = "us-east-1";
 const BUCKET = "robinj-blog-articles";
 
-const s3Client = new S3Client({ region: REGION });
+if (!(AWS_SECRET_ACCESS_KEY && AWS_ACCESS_KEY_ID)) {
+    throw new Error("AWS Credentials not found.");
+}
+
+const s3Client = new S3Client({ 
+    credentials: {
+        accessKeyId: AWS_ACCESS_KEY_ID, 
+        secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    }, 
+    region: REGION 
+});
 
 async function getPost(link: string): Promise<BlogPost | null> {
     const data = await s3Client.send(new GetObjectCommand({
