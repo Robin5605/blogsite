@@ -2,7 +2,7 @@ interface BlogPost {
     title: string,
     description: string,
     content: string,
-    link: string,
+    filename: string,
     tags: string[],
 }
 

@@ -5,7 +5,7 @@ import { BlogPost } from "../models/blog";
 import { Listbox, Transition } from "@headlessui/react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFilter } from "react-icons/bs";
-import { getAllPosts } from "../s3";
+import { getAllPosts } from "../common/blog";
 import Head from "next/head";
 
 export async function getStaticProps() {

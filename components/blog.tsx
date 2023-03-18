@@ -18,7 +18,7 @@ export function BlogPreview({ post }: BlogPreviewProps) {
         <div className="flex flex-col hover:shadow-xl duration-100 w-full bg-nord-700 dark:bg-nord-100 dark:text-white text-black shadow-lg rounded-lg px-6 py-4">
             <div className="flex flex-col">
                 <div className="text-3xl font-semibold duration-200 hover:text-blue-500 mb-2">
-                    <Link href={"/" + post.link}>
+                    <Link href={"/" + post.filename}>
                         { post.title }
                     </Link>
                 </div>

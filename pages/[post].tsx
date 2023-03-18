@@ -2,13 +2,13 @@ import { marked } from "marked";
 import { GetStaticPropsContext } from "next";
 import Navbar from "../components/navbar";
 import { BlogPost } from "../models/blog";
-import { getAllPosts, getPost } from "../s3";
+import { getAllPosts, getPost } from "../common/blog";
 import Head from "next/head";
 
 export const getStaticPaths = async () => {
 
     const posts = (await getAllPosts())
-        .map(post => ({params : { post: post.link }}));
+        .map(post => ({params : { post: post.filename}}));
 
     return {
         paths: posts,
