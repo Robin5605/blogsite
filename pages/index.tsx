@@ -1,18 +1,18 @@
 import { Fragment, useState } from "react";
 import { BlogPreview } from "../components/blog";
 import Navbar from "../components/navbar";
-import { BlogPost } from "../models/blog";
 import { Listbox, Transition } from "@headlessui/react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFilter } from "react-icons/bs";
-import { getAllPosts } from "../common/blog";
+import { BlogPost, getAllPosts } from "../common/contentful";
 import Head from "next/head";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts = await getAllPosts();
   const tags = new Set(
-    posts.map(post => post.tags)
-    .reduce((prev, curr) => prev.concat(curr), [])
+    posts
+        .map(post => post.tags)
+        .reduce((prev, curr) => prev.concat(curr), [])
   );
   return {
     props: {
@@ -105,10 +105,10 @@ export default function Home({ posts, tags }: HomePageProps) {
               { posts.length == 0
                 ? <p className="mx-auto text-center">No posts yet. Stay tuned!</p>
                 : selectedTags.length === 0
-                  ? posts.map(post => <BlogPreview post={post} key={post.filename}/>)
+                  ? posts.map(post => <BlogPreview post={post} key={post.id}/>)
                   : posts
                     .filter(post => post.tags.some(tag => selectedTags.includes(tag)))
-                    .map(post => <BlogPreview post={post} key={post.filename}/>) }
+                    .map(post => <BlogPreview post={post} key={post.id}/>) }
             </div>
           </div>
         </div>
