@@ -1,22 +1,10 @@
 import { marked } from "marked";
-import { GetStaticPropsContext } from "next";
+import { GetServerSidePropsContext } from "next";
 import Navbar from "../components/navbar";
-import { BlogPost } from "../models/blog";
-import { getAllPosts, getPost } from "../common/blog";
+import { BlogPost, getPost } from "../common/contentful";
 import Head from "next/head";
 
-export const getStaticPaths = async () => {
-
-    const posts = (await getAllPosts())
-        .map(post => ({params : { post: post.filename}}));
-
-    return {
-        paths: posts,
-        fallback: true
-    };
-};
-
-export const getStaticProps = async (context: GetStaticPropsContext) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const postLink = context.params?.post;
     if(typeof postLink !== "string") {
         return {
@@ -25,7 +13,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     }
 
     const blogPost = await getPost(postLink);
-    if(blogPost == undefined) {
+    if(!blogPost) {
         return {
             notFound: true
         };
