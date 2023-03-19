@@ -7,13 +7,8 @@ on:
       - master
 
 env:
-  AWS_REGION: "us-east-1"
-  ECR_REPOSITORY: "blog"
-  ECS_SERVICE: blog-service
-  ECS_CLUSTER: blogsite
   GHCR_REGISTRY: ghcr.io
   GHCR_IMAGE_NAME: robin5605/blogsite
-  ECS_TASK_DEFINITION: "ECS_TASK_DEFINITION.json"
   CONTAINER_NAME: "blog"
 
 jobs:
@@ -38,17 +33,6 @@ jobs:
       - name: "Setup Docker buildx"
         uses: docker/setup-buildx-action@4b4e9c3e2d4531116a6f8ba8e71fc6e2cb6e6c8c
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@e1e17a757e536f70e52b5a12b2e8d1d1c60e04ef
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@261a7de32bda11ba01f4d75c4ed6caf3739e54be
-
       - name: "Log into registry ${{ env.REGISTRY }}"
         uses: docker/login-action@ec9cdf07d570632daeb912f5b2099cb9ec1d01e6
         with:
@@ -62,9 +46,6 @@ jobs:
         with:
           images: |
             ${{ env.GHCR_REGISTRY }}/${{ env.GHCR_IMAGE_NAME }}
-            ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
       - name: "Build and push Docker image"
         id: build-and-push
@@ -76,8 +57,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             git_sha=${{ github.sha }}
-            aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -93,20 +72,3 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: cosign sign ${{ env.GHCR_REGISTRY }}/${{ env.GHCR_IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
 
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@61b0c00c3743b70987a73a1faf577f0d167d1574
-        with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:master
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
