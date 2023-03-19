@@ -57,6 +57,9 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             git_sha=${{ github.sha }}
+          secrets: |
+            "SPACE=${{ secrets.SPACE }}"
+            "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}"
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
