@@ -21,7 +21,7 @@
     "@vercel/analytics": "^0.1.11",
     "contentful": "^10.0.0-beta-v10.27",
     "cypress": "^12.8.1",
-    "eslint": "8.27.0",
+    "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "gray-matter": "^4.0.3",
     "marked": "^4.2.12",
