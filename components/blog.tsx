@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlogPost } from "../common/contentful";
+import { BlogPostPreview } from "../common/contentful";
 
 interface TagComponentProps {
     text: string,
@@ -10,7 +10,7 @@ function TagComponent({ text }: TagComponentProps) {
 }
 
 interface BlogPreviewProps {
-    post: BlogPost
+    post: BlogPostPreview 
 }
 
 export function BlogPreview({ post }: BlogPreviewProps) {
