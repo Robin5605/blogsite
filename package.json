@@ -19,7 +19,7 @@
     "@types/react-dom": "18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@vercel/analytics": "^0.1.11",
-    "contentful": "^10.0.0-beta-v10.27",
+    "contentful": "^10.1.6",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "gray-matter": "^4.0.3",
