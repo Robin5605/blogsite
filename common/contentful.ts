@@ -16,6 +16,13 @@ export interface BlogPost {
     content: string,
 }
 
+export interface BlogPostPreview {
+    id: string,
+    title: string,
+    description: string,
+    tags: string[],
+}
+
 const space = process.env.SPACE;
 if(!space) throw new Error("Failed loading Contentful space ID from environment variables");
 

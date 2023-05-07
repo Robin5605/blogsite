@@ -4,16 +4,18 @@ import Navbar from "../components/navbar";
 import { Listbox, Transition } from "@headlessui/react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFilter } from "react-icons/bs";
-import { BlogPost, getAllPosts } from "../common/contentful";
+import { BlogPost, BlogPostPreview, getAllPosts } from "../common/contentful";
 import Head from "next/head";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps<{posts: BlogPostPreview[], tags: string[]}> = async () => {
   const posts = await getAllPosts();
   const tags = new Set(
     posts
         .map(post => post.tags)
         .reduce((prev, curr) => prev.concat(curr), [])
   );
+
   return {
     props: {
       posts,
@@ -75,11 +77,7 @@ function TagFilterComponent({ tags, selectedTags, setSelectedTags }: TagFilterCo
   );
 }
 
-interface HomePageProps {
-  posts: BlogPost[],
-  tags: string[],
-}
-export default function Home({ posts, tags }: HomePageProps) {
+export default function Home({ posts, tags }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   return (
