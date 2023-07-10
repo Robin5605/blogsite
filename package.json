@@ -31,7 +31,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.4.1",
+    "@next/eslint-plugin-next": "^13.4.9",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
