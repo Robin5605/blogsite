@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { Switch } from "@headlessui/react";
+import { BsMoonFill, BsSunFill } from "react-icons/bs";
 import { useContext } from "react";
 import { Theme, ThemeContext } from "./ThemeProvider";
 
@@ -56,7 +56,7 @@ function Navbar() {
             </div>
 
             <div className="flex space-x-2 md:space-x-4 items-center">
-                <MoonIcon className="h-4 w-4 md:h-5 md:w-5 text-xl" />
+                <BsMoonFill className="h-4 w-4 md:h-5 md:w-5 text-xl" />
                 <div>
                     <Switch
                         checked={checked}
@@ -77,7 +77,7 @@ function Navbar() {
                         />
                     </Switch>
                 </div>
-                <SunIcon className="h-5 w-5 md:h-5 md:w-5 text-xl" />
+                <BsMoonFill className="h-5 w-5 md:h-5 md:w-5 text-xl" />
             </div>
         </div>
     );
