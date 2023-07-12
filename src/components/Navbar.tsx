@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Switch } from "@headlessui/react";
-import { BsMoonFill, BsSunFill } from "react-icons/bs";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { useContext } from "react";
 import { Theme, ThemeContext } from "./ThemeProvider";
 
@@ -56,7 +56,7 @@ function Navbar() {
             </div>
 
             <div className="flex space-x-2 md:space-x-4 items-center">
-                <BsMoonFill className="h-4 w-4 md:h-5 md:w-5 text-xl" />
+                <FiMoon className="h-4 w-4 md:h-5 md:w-5 text-xl" />
                 <div>
                     <Switch
                         checked={checked}
@@ -77,7 +77,7 @@ function Navbar() {
                         />
                     </Switch>
                 </div>
-                <BsMoonFill className="h-5 w-5 md:h-5 md:w-5 text-xl" />
+                <FiSun className="h-5 w-5 md:h-5 md:w-5 text-xl" />
             </div>
         </div>
     );
