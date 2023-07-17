@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: "Checkout repository"
-        uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
 
       - name: "Install cosign"
         uses: sigstore/cosign-installer@c3667d99424e7e6047999fb6246c0da843953c65
