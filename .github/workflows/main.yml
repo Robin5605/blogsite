@@ -42,7 +42,7 @@ jobs:
 
       - name: "Extract Docker metadata"
         id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        uses: docker/metadata-action@79f06a31c0239ef7cd295f017ff96abdf7bbe84d
         with:
           images: |
             ${{ env.GHCR_REGISTRY }}/${{ env.GHCR_IMAGE_NAME }}
